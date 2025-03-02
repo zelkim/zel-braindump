@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Article as ArticleType, Topic } from "./types.tsx";
 import Loading from "./loading.tsx";
+import { Helmet } from "react-helmet-async";
 
 export default function Article() {
   const { articleid } = useParams();
@@ -47,6 +48,19 @@ export default function Article() {
       className="w-screen min-h-screen flex items-center justify-center"
       style={{ backgroundColor: topic.tertiaryColor }}
     >
+      <Helmet>
+        <title>{`zel.kim | ${article.title}`}</title>
+        <meta name="description" content={article.caption} />
+        <meta property="og:title" content={article.title} />
+        <meta property="og:description" content={article.caption} />
+        <meta property="og:image" content={article.imageurl} />
+        <meta property="og:url" content={`https://zel.kim/${articleid}`} />
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={article.title} />
+        <meta name="twitter:description" content={article.caption} />
+        <meta name="twitter:image" content={article.imageurl} />
+      </Helmet>
       <div className="flex px-8 pt-16 w-full sm:px-0 sm:w-118 min-h-[50vh] flex-col items-center justify-start self-start">
         <svg
           xmlns="http://www.w3.org/2000/svg"
