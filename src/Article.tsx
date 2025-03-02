@@ -48,7 +48,7 @@ export default function Article() {
   return (
     <div
       className="w-screen min-h-screen flex items-center justify-center"
-      style={{ backgroundColor: topic?.tertiaryColor || "#181520" }}
+      style={{ backgroundColor: topic?.tertiaryColor }}
     >
       <Helmet>
         <title>{`zel.kim | ${article?.title || "Loading..."}`}</title>
@@ -87,7 +87,7 @@ export default function Article() {
 
         <div
           className="w-full text-normal geist-body pt-4 leading-5"
-          style={{ color: topic?.secondaryColor || "#ffffff" }}
+          style={{ color: topic?.secondaryColor }}
         >
           {article?.caption}
         </div>
