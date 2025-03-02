@@ -16,25 +16,10 @@ export default function Article() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setArticleData(null);
-    setTopicData(null);
     axios
       .get(`https://blogapi.zel.kim/post/${articleid}`)
       .then((response) => {
         setArticleData(response.data);
-
-        axios
-          .get(`https://blogapi.zel.kim/topics`)
-          .then((response) => {
-            const topicData = response.data.find(
-              (topic: Topic) => topic.title === response.data.category,
-            );
-            setTopicData(topicData);
-          })
-          .catch((error) => {
-            console.error("topic error", error);
-            setTopicData(null);
-          });
       })
       .catch((error) => {
         console.error("article error", error);
@@ -42,12 +27,29 @@ export default function Article() {
       });
   }, [articleid]);
 
-  // Show loading until both article and topic are fetched
-  if (!article && !topic) return <Loading />;
+  useEffect(() => {
+    if (!article?.category) return; // ✅ Prevents fetching topics before `article` is ready
+
+    axios
+      .get(`https://blogapi.zel.kim/topics`)
+      .then((response) => {
+        const topicData = response.data.find(
+          (topic: Topic) => topic.title === article.category,
+        );
+        console.log("topicData", topicData);
+        setTopicData(topicData || null);
+      })
+      .catch((error) => {
+        console.error("topic error", error);
+        setTopicData(null);
+      });
+  }, [article]); // ✅ Runs only after `article` is set  // Show loading until both article and topic are fetched
+
+  if (!article || !topic) return <Loading />;
 
   return (
     <div
-      className="w-screen min-h-screen flex items-center justify-center"
+      className="w-screen min-h-screen flex items-center justify-center trasition-colors duration-500"
       style={{ backgroundColor: topic?.tertiaryColor }}
     >
       <Helmet>
