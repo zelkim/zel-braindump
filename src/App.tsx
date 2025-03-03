@@ -25,7 +25,7 @@ export default function App() {
     axios
       .get("https://blogapi.zel.kim/posts")
       .then((res: AxiosResponse) => {
-        setArticles(res.data);
+        setArticles(res.data.reverse());
       })
       .catch((err) => {
         console.error("couldn't load :(", err);
