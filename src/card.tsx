@@ -13,7 +13,7 @@ export default function Card(props: {
   return (
     <div
       onClick={() => navigate(props.onclick)}
-      className="hover:cursor-pointer border border-white/29 rounded-sm w-full flex flex-col sm:flex-row geist-bold text-lg p-4"
+      className="hover:cursor-pointer border border-white/29 rounded-sm w-full flex flex-col sm:flex-row geist-bold text-lg p-4 mb-2"
       style={{ backgroundColor: props.bgColor }}
     >
       <div className="flex-1 pr-0 sm:pr-5 flex flex-col">
