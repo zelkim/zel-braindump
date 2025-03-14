@@ -36,7 +36,7 @@ export default function App() {
 
   return (
     <div className="w-screen min-h-screen bg-[#181520] flex items-center justify-center">
-      <div className="flex px-8 w-full sm:px-0 sm:w-118 min-h-[50vh] flex-col items-center justify-center">
+      <div className="flex px-8 w-full sm:px-0 sm:w-118 sm:pt-16 min-h-[50vh] flex-col items-center justify-center">
         <div className="w-full geist-black text-4xl text-start">
           zel's brain dump
         </div>

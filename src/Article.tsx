@@ -47,6 +47,8 @@ export default function Article() {
 
   if (!article || !topic) return <Loading />;
 
+  console.log(article);
+
   return (
     <div
       className="w-screen min-h-screen flex items-center justify-center trasition-colors duration-500"
@@ -86,6 +88,11 @@ export default function Article() {
         <div className="w-full geist-black text-4xl text-start">
           {article?.title}
         </div>
+        <div className="w-full geist-body text-sm text-start pt-1">
+          {`${new Date(article?.created_at).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
+            | ${article?.views} views
+            `}
+        </div>
 
         <div
           className="w-full text-normal geist-body pt-4 leading-5"
@@ -112,7 +119,7 @@ export default function Article() {
 
         <div className="w-full text-normal geist-body pt-4 leading-5 whitespace-pre-line pb-8">
           <Markdown>{article?.content || ""}</Markdown>
-          <p className="text-center">###</p>
+          <p className="text-center pt-4">###</p>
         </div>
       </div>
     </div>

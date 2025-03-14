@@ -13,4 +13,5 @@ export interface Article {
   imageurl: string;
   content: string;
   created_at: Date;
+  views: number;
 }
